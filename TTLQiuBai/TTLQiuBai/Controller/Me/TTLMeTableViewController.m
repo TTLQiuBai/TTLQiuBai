@@ -9,6 +9,7 @@
 #import "TTLMeTableViewController.h"
 
 @interface TTLMeTableViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 
 @end
 
@@ -26,12 +27,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIImage *image = [UIImage imageNamed:@"bluebutton"];
+    UIGraphicsBeginImageContext(CGSizeMake(70, 70));
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 65, 65)];
+    [path addClip];
+    [image drawInRect:CGRectMake(0, 0, 65, 65)];
+    UIImage *tempImage = UIGraphicsGetImageFromCurrentImageContext();
+    self.headImageView.image =tempImage;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIGraphicsEndImageContext();
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,7 +45,7 @@
 }
 
 #pragma mark - Table view data source
-
+/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
@@ -52,7 +57,7 @@
     // Return the number of rows in the section.
     return 0;
 }
-
+*/
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
