@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C7023F5B-4BD0-4495-A000-D5BCA77DBD31</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TTLQiuBai</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C441E882A822C86DC61BC1D248A0747C2EA6C7FF</key>
+		<string>https://github.com/ssyl1992/TTLQiuBai.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TTLQiuBai/TTLQiuBai.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C441E882A822C86DC61BC1D248A0747C2EA6C7FF</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ssyl1992/TTLQiuBai.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C441E882A822C86DC61BC1D248A0747C2EA6C7FF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C441E882A822C86DC61BC1D248A0747C2EA6C7FF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TTLQiuBai</string>
+		</dict>
+	</array>
+</dict>
+</plist>
