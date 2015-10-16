@@ -237,7 +237,7 @@
         CGRect lineFrame = self.lineView.frame;
         CGFloat temp = tScreenWidth / self.mainScroll.contentSize.width;
         lineFrame.origin.x = scrollView.contentOffset.x * temp;
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:0.2 animations:^{
             self.lineView.frame = lineFrame;
         }];
     }
