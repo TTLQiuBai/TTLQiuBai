@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TTLQiuYouTableViewController : UITableViewController
+@interface TTLQiuYouTableViewController : UIViewController
 
 @end
