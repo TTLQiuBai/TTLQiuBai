@@ -8,6 +8,8 @@
 
 #import "TTLQiuShiViewController.h"
 #import "Constant.h"
+#import "TTLNetworking.h"
+
 
 #define tLineHeight 2
 
@@ -71,7 +73,7 @@
     [self.view addSubview:self.lineView];
     
     // 把 tableView 加载到 scrollVier 上
-    
+
 }
 
 
