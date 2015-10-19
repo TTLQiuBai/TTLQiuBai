@@ -8,7 +8,9 @@
 
 #import "TTLQiuShiViewController.h"
 #import "Constant.h"
-#import "TTLNetworking.h"
+#import "TTLAriticle.h"
+
+
 
 
 #define tLineHeight 2
@@ -43,7 +45,7 @@
 // 最新
 @property (nonatomic, strong) UITableView *newsTabV;
 
-
+@property (nonatomic, strong) NSArray *articles;
 
 @end
 
@@ -73,9 +75,36 @@
     [self.view addSubview:self.lineView];
     
     // 把 tableView 加载到 scrollVier 上
+    [self requestWithURLString:@"http://m2.qiushibaike.com/article/list/text?page=1&count=30" tableView:self.articleTabV];
 
+    
+    
 }
 
+#pragma mark -- NetWorking
+- (void)requestWithURLString:(NSString *)str tableView:(UITableView *)tableView {
+    NSURL *url = [NSURL URLWithString:str];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    __block NSDictionary *dict = [NSDictionary dictionary];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSLog(@"%@",[NSThread currentThread]);
+        dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        [self parseJSON:dict tableView:tableView];
+    }];
+    
+    [task resume];
+}
+
+- (void)parseJSON:(NSDictionary *)dict tableView:(UITableView *)tableView{
+   self.articles = [TTLAriticle articlesWithDict:dict];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [tableView reloadData];
+    });
+    
+}
 
 #pragma mark - lazyLoad
 
@@ -157,6 +186,8 @@
         _articleTabV.delegate = self;
         _articleTabV.dataSource = self;
         
+       
+        
     }
     return _articleTabV;
 }
@@ -207,7 +238,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return self.articles.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -215,18 +246,10 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    cell.textLabel.text = @"1111";
+    TTLAriticle *article = self.articles[indexPath.row];
+    cell.textLabel.text = article.content;
     return cell;
 }
-
-
-
-
-
-
-
-
-
 
 
 
