@@ -9,6 +9,9 @@
 #import "TTLQiuShiViewController.h"
 #import "Constant.h"
 #import "TTLAriticle.h"
+#import "AFNetworking.h"
+
+
 
 
 
@@ -76,9 +79,9 @@
     
     // 把 tableView 加载到 scrollVier 上
     [self requestWithURLString:@"http://m2.qiushibaike.com/article/list/text?page=1&count=30" tableView:self.articleTabV];
+    
 
-    
-    
+
 }
 
 #pragma mark -- NetWorking
@@ -90,7 +93,7 @@
     
     __block NSDictionary *dict = [NSDictionary dictionary];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSLog(@"%@",[NSThread currentThread]);
+//        NSLog(@"%@",[NSThread currentThread]);
         dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         [self parseJSON:dict tableView:tableView];
     }];
@@ -103,7 +106,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [tableView reloadData];
     });
-    
 }
 
 #pragma mark - lazyLoad

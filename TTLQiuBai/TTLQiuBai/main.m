@@ -2,17 +2,15 @@
 //  main.m
 //  TTLQiuBai
 //
-//  Created by Tarena on 10/14/15.
-//  Copyright (c) 2015 TTL. All rights reserved.
+//  Created by Tarena on 15/10/20.
+//  Copyright © 2015年 TTL. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-
 int main(int argc, char * argv[]) {
     @autoreleasepool {
-
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }
