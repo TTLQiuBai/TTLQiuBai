@@ -11,43 +11,35 @@
 
 @implementation TTLAriticle
 
-
+- (instancetype)initWithDic:(NSDictionary *)dict {
+    if (self = [super init]) {
+        self.downCount = dict[@"votes"][@"down"];
+        self.upCount = dict[@"votes"][@"up"];
+        self.content = dict[@"content"];
+        self.commentCount = dict[@"comments_count"];
+        NSDictionary *userDic = dict[@"user"];
+        NSLog(@"%@",userDic);
+        NSString *userName = @"匿名用户";
+        if (![userDic isEqual:[NSNull null]]) {
+            
+            userName = userDic[@"login"];
+        }
+        TTLUserInfo *user = [[TTLUserInfo alloc]initWithUserName:userName];
+        self.user = user;
+        
+    }
+    return self;
+}
 
 + (NSArray *)articlesWithDict:(NSDictionary *)dict{
     NSMutableArray *array = [NSMutableArray array];
-    NSArray *contents = [dict valueForKeyPath:@"items.content"];
-    NSLog(@"contentsCount %ld",contents.count);
-    NSArray *votes = [dict valueForKeyPath:@"items.votes"];
-//    NSLog(@"votes %ld",votes.count);
-    NSArray *commentsCount = [dict valueForKeyPath:@"items.comments_count"];
-    NSLog(@"commentsCount %ld",commentsCount.count);
+    NSArray *items = dict[@"items"];
     
-    NSArray *users = [dict valueForKeyPath:@"items.user"];
-    NSLog(@"users %ld",users.count);
-//    NSLog(@"%@",contents);
-    
-    for (int i = 0; i < contents.count; i++) {
-        TTLAriticle *article = [[TTLAriticle alloc]init];
-        article.content = contents[i];
-        article.commentCount = commentsCount[i];
-//        NSLog(@"%@",users[i]);
-        NSDictionary *userDict = users[i];
-        NSString *userName = nil;
-//        if (userDict[@"login"] != NULL) {
-//            userName  = userDict[@"login"];
-//        }else {
-//            userName = @"匿名用户";
-//        }
-
-        TTLUserInfo *user = [[TTLUserInfo alloc]initWithUserName:userName];
-        article.user = user;
-//        article.downCount = votes[i][@"down"];
-//        article.upCount = votes[i][@"up"];
+    for (NSDictionary *item in items) {
+      TTLAriticle *article =  [[self alloc]initWithDic:item];
         [array addObject:article];
     }
-
-                    
-
+    
     return array;
     
 }

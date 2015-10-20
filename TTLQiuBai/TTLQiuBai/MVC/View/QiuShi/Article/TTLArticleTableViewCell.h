@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TTLArticleSubViewFrame.h"
 
 @interface TTLArticleTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) TTLArticleSubViewFrame *subFrame;
 
 @end

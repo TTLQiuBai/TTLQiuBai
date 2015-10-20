@@ -39,8 +39,6 @@
 // 行高
 @property (nonatomic, assign) CGFloat cellHeight;
 
-// 热门
-@property (nonatomic, assign) CGRect hotF;
 
 // 数组用于存放所有模型的大小
 + (NSArray *)articleFrame;

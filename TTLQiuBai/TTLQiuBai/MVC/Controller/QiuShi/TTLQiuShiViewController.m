@@ -78,7 +78,7 @@
     [self.view addSubview:self.lineView];
     
     // 把 tableView 加载到 scrollVier 上
-    [self requestWithURLString:@"http://m2.qiushibaike.com/article/list/text?page=1&count=30" tableView:self.articleTabV];
+    [self requestWithURLString:@"http://m2.qiushibaike.com/article/list/text?page=1&count=30&readarticles=%5B113321710,113317805%5D&rqcnt=12&r=1fa0a8551444729782226" tableView:self.articleTabV];
     
 
 
@@ -86,19 +86,18 @@
 
 #pragma mark -- NetWorking
 - (void)requestWithURLString:(NSString *)str tableView:(UITableView *)tableView {
-    NSURL *url = [NSURL URLWithString:str];
+
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSURLSession *session = [NSURLSession sharedSession];
-    
-    __block NSDictionary *dict = [NSDictionary dictionary];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        NSLog(@"%@",[NSThread currentThread]);
-        dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+ 
+    AFHTTPRequestOperation *opera = [mgr GET:str parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"chenggong");
+        NSDictionary *dict = (NSDictionary *)responseObject;
         [self parseJSON:dict tableView:tableView];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"shibai %@",error.userInfo);
     }];
-    
-    [task resume];
+    [opera start];
 }
 
 - (void)parseJSON:(NSDictionary *)dict tableView:(UITableView *)tableView{
@@ -249,7 +248,7 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     TTLAriticle *article = self.articles[indexPath.row];
-    cell.textLabel.text = article.content;
+    cell.textLabel.text = article.user.userName;
     return cell;
 }
 

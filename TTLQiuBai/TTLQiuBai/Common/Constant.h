@@ -14,3 +14,6 @@
 #define tScreenWidth [[UIScreen mainScreen] bounds].size.width
 #define tScreenHeight [[UIScreen mainScreen] bounds].size.height
 #define tNaviHeight 44
+#define tNormalPadding 15
+#define tNameFont [UIFont systemFontOfSize:16]
+#define tTextFont [UIFont systemFontOfSize:14]
